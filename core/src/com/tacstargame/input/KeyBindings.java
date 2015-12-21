@@ -10,4 +10,5 @@ public class KeyBindings {
 	public static int ENTER = Input.Keys.ENTER;
 	public static int ESC = Input.Keys.ESCAPE;
 	public static int BACK = Input.Keys.BACKSPACE;
+        public static int START = Input.Keys.SPACE;
 }

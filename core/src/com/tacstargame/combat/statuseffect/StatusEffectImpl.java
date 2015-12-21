@@ -1,5 +1,6 @@
 package com.tacstargame.combat.statuseffect;
 
+import com.tacstargame.combat.core.Combat;
 import com.tacstargame.combat.unit.Unit;
 
 public abstract class StatusEffectImpl implements StatusEffect {
@@ -10,6 +11,7 @@ public abstract class StatusEffectImpl implements StatusEffect {
 	protected String name;
 	protected String description;
 	protected Unit source;
+        protected Combat combat;
 	
 	/**
 	 * Creates an instance of a StatusEffectImpl object.
@@ -57,8 +59,9 @@ public abstract class StatusEffectImpl implements StatusEffect {
 	}
 
 	@Override
-	public void onApply(Unit source, Unit target) {
+	public void onApply(Combat combat, Unit source, Unit target) {
 		this.source = source;
+                this.combat = combat;
 	}
 	
 }

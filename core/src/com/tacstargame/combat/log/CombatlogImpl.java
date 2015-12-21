@@ -13,6 +13,7 @@ import com.tacstargame.combat.eventbus.EventBusListener;
 import com.tacstargame.combat.statuseffect.Buff;
 import com.tacstargame.combat.unit.Unit;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -91,7 +92,8 @@ public class CombatlogImpl implements Combatlog {
                     break;
                 }
                 default:
-                    return;
+                    message = Arrays.deepToString(args);
+                    break;
 
             }
             outputCombatlogEntry(new CombatlogEntry(busEvent, message));

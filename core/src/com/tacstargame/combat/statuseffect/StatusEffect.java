@@ -1,5 +1,6 @@
 package com.tacstargame.combat.statuseffect;
 
+import com.tacstargame.combat.core.Combat;
 import com.tacstargame.combat.unit.Unit;
 
 public interface StatusEffect {
@@ -10,7 +11,7 @@ public interface StatusEffect {
 	 * @param source Unit that applied the StatusEffect.
 	 * @param target Unit the StatusEffect has been applied on.
 	 */
-	void onApply(Unit source, Unit target);
+	void onApply(Combat combat, Unit source, Unit target);
 	
 	/**
 	 * Is invoked if the StatusEffect is regularly faded.

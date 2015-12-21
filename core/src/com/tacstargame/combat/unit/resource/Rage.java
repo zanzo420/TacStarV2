@@ -22,7 +22,7 @@ public class Rage extends ResourceImpl implements EventBusListener {
 	@Override
 	public void OnEventFired(EventBusEvent busEvent, Object... args) {
 		Unit tmp = (Unit) args[0];
-		if (unit.equals(tmp) && args[1] instanceof Health) {
+		if (unit != null && unit.equals(tmp) && args[1] instanceof Health) {
 			int difference = (Integer) args[2];
 			if (difference < 0) {
 				increaseCurrentValue(-difference);

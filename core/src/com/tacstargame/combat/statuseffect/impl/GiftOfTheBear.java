@@ -1,5 +1,6 @@
 package com.tacstargame.combat.statuseffect.impl;
 
+import com.tacstargame.combat.core.Combat;
 import com.tacstargame.combat.statuseffect.Buff;
 import com.tacstargame.combat.unit.Unit;
 import com.tacstargame.combat.unit.stats.BaseStat;
@@ -15,8 +16,8 @@ public class GiftOfTheBear extends Buff {
 	}
 	
 	@Override
-	public void onApply(Unit source, Unit target) {
-		super.onApply(source, target);
+	public void onApply(Combat combat, Unit source, Unit target) {
+		super.onApply(combat, source, target);
 		target.getStatusEffectStats().increaseStat(ResistanceStat.SHADOWRESISTANCE, value);
 	}
 

@@ -13,6 +13,10 @@ public class Measure {
 	public boolean equals(Object obj) {
 		return width == ((Measure) obj).width && height == ((Measure) obj).height;
 	}
+        
+        public Measure divide(int width, int height) {
+            return new Measure(this.width / width, this.height / height);
+        }
 	
 	@Override
 	public String toString() {

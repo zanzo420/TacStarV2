@@ -11,7 +11,7 @@ import com.tacstargame.combat.log.Combatlog;
 import com.tacstargame.combat.log.CombatlogImpl;
 import com.tacstargame.combat.log.StdCombatlogImpl;
 import com.tacstargame.combat.statuseffect.impl.GiftOfTheBear;
-import com.tacstargame.combat.unit.resource.Mana;
+import com.tacstargame.combat.unit.resource.ComboPoints;
 import com.tacstargame.combat.unit.resource.Rage;
 import com.tacstargame.combat.unit.stats.BaseStat;
 import com.tacstargame.combat.unit.stats.ModificatorStat;
@@ -21,8 +21,8 @@ public class Lenor extends CharacterImpl {
 
 	public Lenor() {
 		super("Lenor");	
-                setPrimaryResource(new Mana(this, 5, 5, 5));
-		setSecondaryResource(new Rage(this, 0));
+                setPrimaryResource(new Rage(this, 100));
+		setSecondaryResource(new ComboPoints(this, 1));
 		getBaseStats().increaseStat(BaseStat.STAMINA, 5);
 		getBaseStats().increaseStat(ModificatorStat.MAXRAGE, 15);
 		getBaseStats().increaseStat(BaseStat.SPEED, 15);
@@ -43,7 +43,7 @@ public class Lenor extends CharacterImpl {
 		};
 		EventBusImpl.getInstance().registerForMultipleEvents(listener, EventBusEvent.values());
                 Combatlog combatlog = new CombatlogImpl(new StdCombatlogImpl());
-                enemy.getStatusEffectSet().addStatusEffect(character, new GiftOfTheBear());
+                //enemy.getStatusEffectSet().addStatusEffect(character, new GiftOfTheBear());
                 combat.addPlayer(character);
                 combat.addEnemy(enemy);
                 combat.queuePlayerAbility(character, enemy, ability);

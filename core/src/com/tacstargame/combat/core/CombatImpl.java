@@ -6,6 +6,7 @@ import com.tacstargame.combat.eventbus.EventBusEvent;
 import com.tacstargame.combat.eventbus.EventBusImpl;
 import com.tacstargame.combat.log.Combatlog;
 import com.tacstargame.combat.log.CombatlogImpl;
+import com.tacstargame.combat.log.StdCombatlogImpl;
 import com.tacstargame.combat.statuseffect.StatusEffect;
 import com.tacstargame.combat.unit.Unit;
 import com.tacstargame.combat.unit.status.UnitStatus;
@@ -19,7 +20,7 @@ public class CombatImpl implements Combat {
 
     private AbilityQueue abilityQueue = new AbilityQueueImpl();
     private CombatCalculator combatCalculator = new StdCombatCalculatorImpl();
-    private Combatlog combatlog = new CombatlogImpl();
+    private Combatlog combatlog = new CombatlogImpl(new StdCombatlogImpl());
 
     private int roundCounter = 1;
 
@@ -33,6 +34,7 @@ public class CombatImpl implements Combat {
             if (entry != null) {
                 if (checkResource(entry) && checkUnitStatus(entry)) {
                     payResource(entry);
+                    entry.ability.setRemainingCooldown(entry.ability.getMaxCooldown());
                     calculateTargets(entry);
                 }
             } else {
@@ -55,10 +57,29 @@ public class CombatImpl implements Combat {
                 calculateSingleTarget(entry);
                 break;
             case GROUP:
+                List<Unit> targetGroup = getUnitGroup(entry.target);
+                for (Unit unit : getUnitGroup(entry.target)) {
+                    entry.target = unit;
+                    calculateSingleTarget(entry);
+                }
                 break;
             case AOE:
+                for (Unit unit : enemyGroup) {
+                    entry.target = unit;
+                    calculateSingleTarget(entry);
+                }
+                for (Unit unit : playerGroup) {
+                    entry.target = unit;
+                    calculateSingleTarget(entry);
+                }
                 break;
         }
+    }
+    
+    private List<Unit> getUnitGroup(Unit unit) {
+        if (playerGroup.contains(unit)) { return playerGroup; }
+        if (enemyGroup.contains(unit)) { return enemyGroup; }
+        return null;
     }
 
     private void calculateSingleTarget(AbilityQueueEntry entry) {
@@ -223,7 +244,7 @@ public class CombatImpl implements Combat {
 
     @Override
     public void queuePlayerAbility(Unit source, Unit target, Ability ability) {
-        if (!roundReady) {
+        if (!roundReady && ability.getRemainingCooldown() == 0) {
             abilityQueue.queuePlayerAbility(source, target, ability);
         }
     }
@@ -278,6 +299,16 @@ public class CombatImpl implements Combat {
         roundReady = false;
         roundCounter++;
         EventBusImpl.getInstance().fireEvent(EventBusEvent.COMBAT_STATE_CHANGED, roundReady, roundCounter);
+    }
+
+    @Override
+    public boolean hasAbilityQueued(Unit unit) {
+        return abilityQueue.hasAbilityQueued(unit);
+    }
+
+    @Override
+    public boolean isCalculating() {
+        return roundReady;
     }
 
 }

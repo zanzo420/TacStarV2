@@ -29,6 +29,7 @@ public class AbilityQueueImpl implements AbilityQueue {
     @Override
     public void dequeuePlayerAbility(Unit unit) {
         AbilityQueueEntry entry;
+        if (unit == null) return;
         for (int i = 0; i < abilityQueue.size(); i++) {
             entry = abilityQueue.get(i);
             if (entry.source.getName().equals(unit.getName())) {

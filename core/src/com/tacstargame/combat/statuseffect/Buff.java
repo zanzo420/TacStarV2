@@ -1,5 +1,6 @@
 package com.tacstargame.combat.statuseffect;
 
+import com.tacstargame.combat.core.Combat;
 import com.tacstargame.combat.eventbus.EventBusEvent;
 import com.tacstargame.combat.eventbus.EventBusImpl;
 import com.tacstargame.combat.unit.Unit;
@@ -12,8 +13,8 @@ public abstract class Buff extends StatusEffectImpl {
 	}
 
 	@Override
-	public void onApply(Unit source, Unit target) {
-		super.onApply(source, target);
+	public void onApply(Combat combat, Unit source, Unit target) {
+		super.onApply(combat, source, target);
 		EventBusImpl.getInstance().fireEvent(EventBusEvent.UNIT_BUFF_APPLIED, this, source, target);
 	}
 	

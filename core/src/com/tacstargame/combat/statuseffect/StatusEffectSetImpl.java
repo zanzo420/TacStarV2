@@ -1,5 +1,6 @@
 package com.tacstargame.combat.statuseffect;
 
+import com.tacstargame.combat.core.Combat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -16,9 +17,9 @@ public class StatusEffectSetImpl implements StatusEffectSet {
     }
 
     @Override
-    public void addStatusEffect(Unit source, StatusEffect statusEffect) {
+    public void addStatusEffect(Combat combat, Unit source, StatusEffect statusEffect) {
         statusEffects.add(statusEffect);
-        statusEffect.onApply(source, unit);
+        statusEffect.onApply(combat, source, unit);
     }
 
     @Override

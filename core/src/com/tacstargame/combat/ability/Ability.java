@@ -1,5 +1,6 @@
 package com.tacstargame.combat.ability;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.tacstargame.combat.core.Combat;
 import com.tacstargame.combat.unit.Unit;
 import com.tacstargame.combat.unit.resource.Resource;
@@ -22,6 +23,34 @@ public interface Ability {
 	 * @return Damage of this Ability.
 	 */
 	AbilityDamage getAbilityDamage();
+        
+        /**
+         * Set the remaining cooldown time to a new value.
+         * 
+         * @param remainingCooldown The new value.
+         */
+        void setRemainingCooldown(int remainingCooldown);
+        
+        /**
+         * Returns the Maximum Cooldown Time.
+         * 
+         * @return Maximum Cooldown Time.
+         */
+        int getMaxCooldown();
+        
+        /**
+         * Sets the Maximum Cooldown Time.
+         * 
+         * @param maxCooldown New Maximum Cooldown Time.
+         */
+        void setMaxCooldown(int maxCooldown);
+        
+        /**
+         * Returns the Remaining Cooldown Time.
+         * 
+         * @return Remaining Cooldown Time.
+         */
+        int getRemainingCooldown();
 	
 	/**
 	 * Returns which Resource this Ability consumes.
@@ -93,4 +122,11 @@ public interface Ability {
 	 * @return The name of this Ability.
 	 */
 	String getName();
+        
+        /**
+         * Returns the Icon of this Ability.
+         * 
+         * @return Icon of this Ability.
+         */
+        Texture getIcon();
 }

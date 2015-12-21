@@ -25,6 +25,9 @@ public class UiMenu extends UiContainerImpl {
 	
 	public void addUiElement(int row, UiElement uiElement) {
 		this.uiElement.get(row).add(uiElement);
+                if (this.uiElement.get(0).size() > 0) {
+                    this.uiElement.get(selectedRow).get(selectedCol).setSelected(true);
+                }
 		addUiElement(uiElement);
 	}
 	
@@ -76,11 +79,6 @@ public class UiMenu extends UiContainerImpl {
 
 		@Override
 		public void onKeyDown(int keyCode) {
-			
-		}
-
-		@Override
-		public void onKeyUp(int keyCode) {
 			if (selected && KeyBindings.RIGHT == keyCode) {
 				uiElement.get(selectedRow).get(selectedCol).setSelected(false);
 				goRight();
@@ -104,6 +102,11 @@ public class UiMenu extends UiContainerImpl {
 				goUp();
 				uiElement.get(selectedRow).get(selectedCol).setSelected(true);
 			}
+		}
+
+		@Override
+		public void onKeyUp(int keyCode) {
+			
 		}
 
 		@Override

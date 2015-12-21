@@ -20,6 +20,8 @@ public interface Combat {
         List<Unit> getEnemyGroup();
         void queuePlayerAbility(Unit source, Unit target, Ability ability);
         void dequeuePlayerAbility(Unit unit);
+        boolean isCalculating();
+        boolean hasAbilityQueued(Unit unit);
         void setCombatCalculator(CombatCalculator combatCalculator);
         Combatlog getCombatlog();
         int getCurrentRound();

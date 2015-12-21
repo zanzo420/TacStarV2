@@ -20,4 +20,5 @@ public interface Unit {
 	Stats getStatusEffectStats();
 	Stats getStats();
 	String getName();
+        int getUnitID();
 }

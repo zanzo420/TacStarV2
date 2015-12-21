@@ -5,20 +5,26 @@
  */
 package com.tacstargame.combat.ability.abilities;
 
-import com.tacstargame.combat.ability.Ability;
+import com.badlogic.gdx.graphics.Texture;
 import com.tacstargame.combat.ability.AbilityDamage;
 import com.tacstargame.combat.ability.AbilityDamageType;
+import com.tacstargame.combat.ability.AbilityImpl;
 import com.tacstargame.combat.ability.AbilityTarget;
 import com.tacstargame.combat.core.Combat;
 import com.tacstargame.combat.unit.Unit;
 import com.tacstargame.combat.unit.resource.Mana;
 import com.tacstargame.combat.unit.resource.Resource;
+import com.tacstargame.rendering.TextureResource;
 
 /**
  *
  * @author Domenik Irrgang
  */
-public class Mindblast implements Ability {
+public class Mindblast extends AbilityImpl {
+
+    public Mindblast() {
+        super(3);
+    }
 
     @Override
     public void execute(Combat combat, Unit source, Unit target) {
@@ -78,6 +84,11 @@ public class Mindblast implements Ability {
     @Override
     public String getName() {
         return "Mindblast";
+    }
+
+    @Override
+    public Texture getIcon() {
+        return TextureResource.get(TextureResource.ICON_ABILITY_MINDBLAST);
     }
     
 }

@@ -26,4 +26,5 @@ public abstract class AbstractTacStarScreenFactory {
 	public abstract TacStarScreen getIntroScreen(TacStar tacStar);
 	public abstract TacStarScreen getCombatScreen(TacStar tacStar);
 	public abstract TacStarScreen getSettingsScreen(TacStar tacStar);
+        public abstract TacStarScreen getBossSelectionScreen(TacStar tacStar);
 }

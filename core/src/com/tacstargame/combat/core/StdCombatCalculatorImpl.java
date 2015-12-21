@@ -200,10 +200,13 @@ public class StdCombatCalculatorImpl implements CombatCalculator {
 
     @Override
     public Unit getFastestUnit(List<Unit> units) {
-        Unit tmp = units.get(0);
-        for (Unit unit : units) {
-            if (tmp.getStats().getStatValue(BaseStat.SPEED) < unit.getStats().getStatValue(BaseStat.SPEED)) {
-                tmp = unit;
+        Unit tmp = null;
+        if (units.size() > 0) {
+            tmp = units.get(0);
+            for (Unit unit : units) {
+                if (tmp.getStats().getStatValue(BaseStat.SPEED) < unit.getStats().getStatValue(BaseStat.SPEED)) {
+                    tmp = unit;
+                }
             }
         }
         return tmp;

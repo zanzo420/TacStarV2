@@ -34,7 +34,6 @@ public class SettingsScreen extends AbstractScreen {
 		
 		resolution = new UiColorLabel("Resolution: " + tacStar.getRender().getRenderSettings().getResolution().toString(), Color.CYAN, new Vector2(0,0));
 		resolution.setPosition(new Vector2((1920f / 2) - (resolution.getGlyphLayout().width / 2) + 4, 1080f * 0.4f));
-		resolution.setSelected(true);
 		resolution.addAction(new ChangeResolutionAction());
 		
 		fullscreen = new UiColorLabel(tacStar.getRender().getRenderSettings().isFullscreen() ? "Fullscreen: ON" : "Fullscreen: OFF", Color.CYAN, new Vector2(0,0));
